@@ -242,8 +242,10 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  return String(minutes)
+    .padStart(2, '0')
+    .concat(':', String(seconds).padStart(2, '0'));
 }
 
 /**
@@ -256,8 +258,14 @@ function formatTime(/* minutes, seconds */) {
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  let reverseStr = '';
+
+  for (let i = 0; i < str.length; i += 1) {
+    reverseStr = `${str[i]}${reverseStr}`;
+  }
+
+  return reverseStr;
 }
 
 /**
@@ -287,8 +295,8 @@ function orderAlphabetically(/* str */) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  return str.includes(substring);
 }
 
 /**
@@ -305,8 +313,20 @@ function containsSubstring(/* str, substring */) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  let count = 0;
+  const mas = ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'];
+
+  for (let i = 0; i < mas.length; i += 1) {
+    let position = str.indexOf(mas[i]);
+
+    while (position !== -1) {
+      count += 1;
+      position = str.indexOf(mas[i], position + 1);
+    }
+  }
+
+  return count;
 }
 
 /**
@@ -367,8 +387,18 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  let invertString = '';
+
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === str[i].toUpperCase()) {
+      invertString += str[i].toLowerCase();
+    } else {
+      invertString += str[i].toUpperCase();
+    }
+  }
+
+  return invertString;
 }
 
 /**
@@ -413,8 +443,15 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  let result = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] !== '<' && str[i] !== '>') {
+      result = `${result}${str[i]}`;
+    }
+  }
+
+  return result;
 }
 
 /**
@@ -432,8 +469,8 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
